@@ -1,0 +1,55 @@
+
+sk_duoweizi.png
+size: 194,26
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+xx
+  rotate: false
+  xy: 0, 0
+  size: 26, 26
+  orig: 28, 28
+  offset: 1, 1
+  index: -1
+xxc
+  rotate: false
+  xy: 28, 0
+  size: 26, 26
+  orig: 28, 28
+  offset: 1, 1
+  index: -1
+xxh
+  rotate: false
+  xy: 56, 0
+  size: 26, 26
+  orig: 28, 28
+  offset: 1, 1
+  index: -1
+xxlan
+  rotate: false
+  xy: 84, 0
+  size: 26, 26
+  orig: 28, 28
+  offset: 1, 1
+  index: -1
+xxlv
+  rotate: false
+  xy: 112, 0
+  size: 26, 26
+  orig: 28, 28
+  offset: 1, 1
+  index: -1
+xxqing
+  rotate: false
+  xy: 140, 0
+  size: 26, 26
+  orig: 28, 28
+  offset: 1, 1
+  index: -1
+xxz
+  rotate: false
+  xy: 168, 0
+  size: 26, 26
+  orig: 28, 28
+  offset: 1, 1
+  index: -1

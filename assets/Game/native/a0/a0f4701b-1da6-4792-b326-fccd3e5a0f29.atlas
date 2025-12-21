@@ -1,0 +1,48 @@
+
+sk_qpfk.png
+size: 1524,720
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bk1
+  rotate: false
+  xy: 722, 38
+  size: 682, 682
+  orig: 682, 682
+  offset: 0, 0
+  index: -1
+bk2
+  rotate: false
+  xy: 0, 0
+  size: 720, 720
+  orig: 720, 720
+  offset: 0, 0
+  index: -1
+gx1
+  rotate: false
+  xy: 1406, 607
+  size: 117, 113
+  orig: 117, 113
+  offset: 0, 0
+  index: -1
+gx2
+  rotate: false
+  xy: 722, 16
+  size: 130, 20
+  orig: 130, 20
+  offset: 0, 0
+  index: -1
+gx3
+  rotate: false
+  xy: 1406, 521
+  size: 88, 84
+  orig: 88, 84
+  offset: 0, 0
+  index: -1
+gx4
+  rotate: false
+  xy: 1406, 393
+  size: 20, 126
+  orig: 20, 126
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,41 @@
+
+sk_block_saoguangqs.png
+size: 973,126
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+6
+  rotate: true
+  xy: 815, 3
+  size: 28, 156
+  orig: 28, 156
+  offset: 0, 0
+  index: -1
+daocaoren
+  rotate: true
+  xy: 815, 33
+  size: 92, 118
+  orig: 92, 118
+  offset: 0, 0
+  index: -1
+dibanqiu
+  rotate: false
+  xy: 1, 1
+  size: 404, 124
+  orig: 404, 124
+  offset: 0, 0
+  index: -1
+dibanyy
+  rotate: false
+  xy: 407, 15
+  size: 406, 110
+  orig: 406, 111
+  offset: 0, 0
+  index: -1
+langan
+  rotate: true
+  xy: 935, 67
+  size: 58, 37
+  orig: 58, 37
+  offset: 0, 0
+  index: -1

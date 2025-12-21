@@ -1,0 +1,90 @@
+
+sk_combo.png
+size: 385,463
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huang_1
+  rotate: false
+  xy: 164, 187
+  size: 107, 107
+  orig: 111, 111
+  offset: 2, 2
+  index: -1
+huang_2
+  rotate: false
+  xy: 0, 0
+  size: 130, 130
+  orig: 132, 132
+  offset: 1, 1
+  index: -1
+huang_2_1
+  rotate: false
+  xy: 0, 132
+  size: 162, 162
+  orig: 166, 166
+  offset: 2, 2
+  index: -1
+lan_1
+  rotate: false
+  xy: 273, 192
+  size: 102, 102
+  orig: 106, 106
+  offset: 2, 2
+  index: -1
+lan_2
+  rotate: false
+  xy: 132, 5
+  size: 125, 125
+  orig: 129, 129
+  offset: 2, 2
+  index: -1
+lan_2_1
+  rotate: false
+  xy: 0, 296
+  size: 167, 167
+  orig: 171, 171
+  offset: 2, 2
+  index: -1
+lizi1
+  rotate: true
+  xy: 338, 448
+  size: 15, 16
+  orig: 17, 18
+  offset: 1, 1
+  index: -1
+lizi2
+  rotate: true
+  xy: 356, 450
+  size: 13, 14
+  orig: 15, 16
+  offset: 1, 1
+  index: -1
+lizi3
+  rotate: true
+  xy: 372, 438
+  size: 11, 12
+  orig: 15, 16
+  offset: 2, 2
+  index: -1
+lizi4
+  rotate: false
+  xy: 372, 451
+  size: 13, 12
+  orig: 15, 16
+  offset: 1, 2
+  index: -1
+qing_1
+  rotate: false
+  xy: 259, 78
+  size: 107, 107
+  orig: 111, 111
+  offset: 2, 2
+  index: -1
+qing_2_1
+  rotate: false
+  xy: 169, 296
+  size: 167, 167
+  orig: 171, 171
+  offset: 2, 2
+  index: -1

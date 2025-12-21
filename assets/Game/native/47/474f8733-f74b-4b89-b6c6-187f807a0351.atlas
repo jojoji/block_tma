@@ -1,0 +1,118 @@
+
+sk_tiaozhan.png
+size: 1352,404
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: true
+  xy: 1201, 292
+  size: 109, 113
+  orig: 109, 113
+  offset: 0, 0
+  index: -1
+6
+  rotate: true
+  xy: 782, 42
+  size: 130, 279
+  orig: 130, 279
+  offset: 0, 0
+  index: -1
+g
+  rotate: false
+  xy: 1011, 213
+  size: 188, 188
+  orig: 188, 188
+  offset: 0, 0
+  index: -1
+g2
+  rotate: false
+  xy: 903, 6
+  size: 34, 34
+  orig: 37, 37
+  offset: 1, 1
+  index: -1
+g21
+  rotate: false
+  xy: 782, 1
+  size: 39, 39
+  orig: 42, 43
+  offset: 2, 2
+  index: -1
+guang
+  rotate: false
+  xy: 1, 9
+  size: 392, 392
+  orig: 426, 426
+  offset: 17, 17
+  index: -1
+huizhang
+  rotate: false
+  xy: 782, 174
+  size: 227, 227
+  orig: 227, 227
+  offset: 0, 0
+  index: -1
+huizhangx
+  rotate: true
+  xy: 1264, 19
+  size: 271, 85
+  orig: 271, 85
+  offset: 0, 0
+  index: -1
+huizhangyy
+  rotate: false
+  xy: 1201, 228
+  size: 61, 62
+  orig: 66, 66
+  offset: 2, 2
+  index: -1
+huizhangz
+  rotate: false
+  xy: 1063, 35
+  size: 176, 176
+  orig: 176, 176
+  offset: 0, 0
+  index: -1
+quan
+  rotate: false
+  xy: 395, 16
+  size: 385, 385
+  orig: 385, 385
+  offset: 0, 0
+  index: -1
+x1
+  rotate: false
+  xy: 823, 1
+  size: 39, 39
+  orig: 41, 41
+  offset: 1, 1
+  index: -1
+x3
+  rotate: false
+  xy: 823, 1
+  size: 39, 39
+  orig: 41, 41
+  offset: 1, 1
+  index: -1
+x2
+  rotate: false
+  xy: 969, 14
+  size: 26, 26
+  orig: 30, 30
+  offset: 2, 2
+  index: -1
+x4
+  rotate: false
+  xy: 864, 3
+  size: 37, 37
+  orig: 41, 41
+  offset: 2, 2
+  index: -1
+x5
+  rotate: false
+  xy: 939, 12
+  size: 28, 28
+  orig: 30, 30
+  offset: 1, 1
+  index: -1

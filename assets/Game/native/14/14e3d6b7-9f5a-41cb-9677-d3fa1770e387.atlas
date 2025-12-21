@@ -1,0 +1,27 @@
+
+sk_wenzi.png
+size: 192,88
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sdx
+  rotate: false
+  xy: 0, 0
+  size: 169, 4
+  orig: 190, 5
+  offset: 8, 1
+  index: -1
+wenzi
+  rotate: false
+  xy: 0, 6
+  size: 182, 34
+  orig: 182, 34
+  offset: 0, 0
+  index: -1
+wenzib
+  rotate: false
+  xy: 0, 42
+  size: 192, 46
+  orig: 195, 48
+  offset: 1, 1
+  index: -1

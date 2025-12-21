@@ -1,0 +1,139 @@
+
+sk_block_jiesuan.png
+size: 1504,194
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cg_1
+  rotate: false
+  xy: 1, 1
+  size: 750, 86
+  orig: 750, 86
+  offset: 0, 0
+  index: -1
+cg_10
+  rotate: false
+  xy: 1207, 142
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+cg_3
+  rotate: false
+  xy: 374, 89
+  size: 370, 104
+  orig: 370, 104
+  offset: 0, 0
+  index: -1
+cg_4
+  rotate: false
+  xy: 1118, 100
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+cg_5
+  rotate: false
+  xy: 1232, 144
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+cg_6
+  rotate: false
+  xy: 1150, 166
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+cg_7
+  rotate: false
+  xy: 1179, 167
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+cg_8
+  rotate: false
+  xy: 1179, 139
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+cg_9
+  rotate: false
+  xy: 1118, 163
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+sb_10
+  rotate: false
+  xy: 1208, 117
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+sb_3
+  rotate: false
+  xy: 753, 1
+  size: 750, 86
+  orig: 750, 86
+  offset: 0, 0
+  index: -1
+sb_4
+  rotate: false
+  xy: 1149, 100
+  size: 29, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+sb_5
+  rotate: false
+  xy: 1235, 172
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+sb_6
+  rotate: false
+  xy: 1150, 137
+  size: 27, 27
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+sb_7
+  rotate: false
+  xy: 1180, 111
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+sb_8
+  rotate: false
+  xy: 1207, 167
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+sb_9
+  rotate: false
+  xy: 1118, 131
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+sb_ck1
+  rotate: false
+  xy: 746, 89
+  size: 370, 104
+  orig: 370, 104
+  offset: 0, 0
+  index: -1
+word_gongzihuode
+  rotate: false
+  xy: 1, 89
+  size: 371, 104
+  orig: 371, 104
+  offset: 0, 0
+  index: -1

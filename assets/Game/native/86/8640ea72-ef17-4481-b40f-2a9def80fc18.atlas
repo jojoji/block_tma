@@ -1,0 +1,118 @@
+
+sk_block_shanguang.png
+size: 342,1041
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fa3
+  rotate: false
+  xy: 0, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+g_y_d1
+  rotate: true
+  xy: 296, 313
+  size: 40, 42
+  orig: 40, 42
+  offset: 0, 0
+  index: -1
+guang_huan1
+  rotate: false
+  xy: 223, 32
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+hit3_000
+  rotate: false
+  xy: 0, 871
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_001
+  rotate: false
+  xy: 172, 871
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_002
+  rotate: false
+  xy: 0, 699
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_003
+  rotate: false
+  xy: 172, 699
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_004
+  rotate: false
+  xy: 0, 527
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_005
+  rotate: false
+  xy: 172, 527
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_006
+  rotate: false
+  xy: 0, 355
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_007
+  rotate: false
+  xy: 172, 355
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+hit3_008
+  rotate: false
+  xy: 0, 183
+  size: 170, 170
+  orig: 170, 170
+  offset: 0, 0
+  index: -1
+lh_fx_xx1
+  rotate: false
+  xy: 0, 68
+  size: 113, 113
+  orig: 113, 113
+  offset: 0, 0
+  index: -1
+lh_fx_xx2
+  rotate: false
+  xy: 115, 0
+  size: 106, 106
+  orig: 106, 106
+  offset: 0, 0
+  index: -1
+lh_fx_xx3
+  rotate: true
+  xy: 172, 108
+  size: 121, 122
+  orig: 121, 122
+  offset: 0, 0
+  index: -1
+lh_fx_xx4
+  rotate: false
+  xy: 172, 231
+  size: 122, 122
+  orig: 122, 122
+  offset: 0, 0
+  index: -1

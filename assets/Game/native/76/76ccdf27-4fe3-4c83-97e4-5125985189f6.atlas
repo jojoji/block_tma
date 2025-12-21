@@ -1,0 +1,41 @@
+
+sk_lianxiao.png
+size: 295,105
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+g_q22
+  rotate: false
+  xy: 0, 1
+  size: 104, 104
+  orig: 108, 108
+  offset: 2, 2
+  index: -1
+gq
+  rotate: false
+  xy: 106, 13
+  size: 92, 92
+  orig: 102, 102
+  offset: 5, 5
+  index: -1
+x1
+  rotate: false
+  xy: 200, 0
+  size: 14, 14
+  orig: 16, 16
+  offset: 1, 1
+  index: -1
+x2
+  rotate: false
+  xy: 106, 0
+  size: 11, 11
+  orig: 13, 13
+  offset: 1, 1
+  index: -1
+zg
+  rotate: false
+  xy: 200, 16
+  size: 95, 89
+  orig: 109, 106
+  offset: 6, 10
+  index: -1

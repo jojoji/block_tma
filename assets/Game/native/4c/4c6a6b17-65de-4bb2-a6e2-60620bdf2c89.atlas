@@ -1,0 +1,167 @@
+
+sk_washa_jiesuo.png
+size: 658,267
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dingzi1
+  rotate: false
+  xy: 138, 11
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+dingzi2
+  rotate: false
+  xy: 138, 11
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+fx_yun
+  rotate: true
+  xy: 542, 5
+  size: 119, 116
+  orig: 134, 132
+  offset: 5, 8
+  index: -1
+g_y_d1
+  rotate: false
+  xy: 426, 2
+  size: 38, 40
+  orig: 40, 42
+  offset: 1, 1
+  index: -1
+guang2
+  rotate: false
+  xy: 450, 52
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+kuang_guang
+  rotate: false
+  xy: 384, 2
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+muban
+  rotate: false
+  xy: 298, 26
+  size: 84, 85
+  orig: 86, 85
+  offset: 1, 0
+  index: -1
+qj_tx_00001
+  rotate: false
+  xy: 466, 7
+  size: 52, 43
+  orig: 59, 48
+  offset: 3, 3
+  index: -1
+qj_tx_00003
+  rotate: true
+  xy: 523, 126
+  size: 141, 121
+  orig: 147, 127
+  offset: 3, 3
+  index: -1
+qj_tx_00005
+  rotate: true
+  xy: 271, 113
+  size: 154, 134
+  orig: 161, 142
+  offset: 3, 4
+  index: -1
+qj_tx_00007
+  rotate: true
+  xy: 0, 109
+  size: 158, 136
+  orig: 166, 145
+  offset: 3, 4
+  index: -1
+qj_tx_00009
+  rotate: true
+  xy: 138, 111
+  size: 156, 131
+  orig: 165, 143
+  offset: 4, 6
+  index: -1
+qj_tx_00011
+  rotate: true
+  xy: 407, 114
+  size: 153, 114
+  orig: 164, 126
+  offset: 5, 6
+  index: -1
+si_tou2
+  rotate: false
+  xy: 0, 0
+  size: 110, 107
+  orig: 110, 107
+  offset: 0, 0
+  index: -1
+sk1
+  rotate: true
+  xy: 512, 55
+  size: 26, 25
+  orig: 26, 25
+  offset: 0, 0
+  index: -1
+sk11
+  rotate: true
+  xy: 251, 23
+  size: 86, 45
+  orig: 86, 45
+  offset: 0, 0
+  index: -1
+sk2
+  rotate: true
+  xy: 125, 4
+  size: 15, 11
+  orig: 15, 11
+  offset: 0, 0
+  index: -1
+sk22
+  rotate: true
+  xy: 200, 23
+  size: 86, 49
+  orig: 86, 49
+  offset: 0, 0
+  index: -1
+sk3
+  rotate: true
+  xy: 112, 3
+  size: 16, 11
+  orig: 16, 11
+  offset: 0, 0
+  index: -1
+x1
+  rotate: true
+  xy: 512, 83
+  size: 29, 28
+  orig: 33, 32
+  offset: 2, 2
+  index: -1
+x2
+  rotate: false
+  xy: 200, 1
+  size: 20, 20
+  orig: 24, 24
+  offset: 2, 2
+  index: -1
+yuan_lizi
+  rotate: false
+  xy: 384, 44
+  size: 64, 67
+  orig: 80, 80
+  offset: 10, 6
+  index: -1
+zhe1
+  rotate: false
+  xy: 112, 21
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1

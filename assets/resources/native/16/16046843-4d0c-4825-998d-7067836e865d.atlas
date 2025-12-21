@@ -1,0 +1,13 @@
+
+sk_jiazai.png
+size: 56,56
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+k1
+  rotate: false
+  xy: 0, 0
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1

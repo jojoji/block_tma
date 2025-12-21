@@ -1,0 +1,27 @@
+
+sk_shuaxin.png
+size: 95,108
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gq
+  rotate: false
+  xy: 0, 0
+  size: 95, 95
+  orig: 113, 113
+  offset: 9, 9
+  index: -1
+x1
+  rotate: false
+  xy: 12, 97
+  size: 11, 11
+  orig: 11, 11
+  offset: 0, 0
+  index: -1
+x2
+  rotate: false
+  xy: 0, 98
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1

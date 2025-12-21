@@ -1,0 +1,55 @@
+
+sk_dongxiao.png
+size: 363,123
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+baodian020
+  rotate: false
+  xy: 120, 11
+  size: 110, 112
+  orig: 128, 128
+  offset: 8, 8
+  index: -1
+fa3
+  rotate: false
+  xy: 232, 0
+  size: 53, 55
+  orig: 64, 64
+  offset: 6, 4
+  index: -1
+gq
+  rotate: false
+  xy: 0, 5
+  size: 118, 118
+  orig: 130, 130
+  offset: 6, 6
+  index: -1
+guang_huan1
+  rotate: false
+  xy: 232, 57
+  size: 66, 66
+  orig: 74, 74
+  offset: 5, 5
+  index: -1
+star3
+  rotate: false
+  xy: 300, 69
+  size: 54, 54
+  orig: 62, 62
+  offset: 4, 4
+  index: -1
+xin
+  rotate: false
+  xy: 287, 11
+  size: 44, 44
+  orig: 49, 48
+  offset: 3, 2
+  index: -1
+xin1
+  rotate: false
+  xy: 333, 37
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,83 @@
+
+sk_block_xuanzhong.png
+size: 1004,814
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+caise
+  rotate: false
+  xy: 810, 165
+  size: 109, 649
+  orig: 119, 659
+  offset: 5, 5
+  index: -1
+cheng_guang
+  rotate: false
+  xy: 0, 142
+  size: 133, 672
+  orig: 143, 684
+  offset: 5, 6
+  index: -1
+csk_ef_3
+  rotate: false
+  xy: 921, 190
+  size: 83, 624
+  orig: 85, 626
+  offset: 1, 1
+  index: -1
+hong_guang
+  rotate: false
+  xy: 135, 142
+  size: 133, 672
+  orig: 143, 684
+  offset: 5, 6
+  index: -1
+huang_guang
+  rotate: false
+  xy: 270, 142
+  size: 133, 672
+  orig: 143, 684
+  offset: 5, 6
+  index: -1
+lan_guang
+  rotate: false
+  xy: 405, 142
+  size: 133, 672
+  orig: 143, 684
+  offset: 5, 6
+  index: -1
+lizid
+  rotate: false
+  xy: 0, 0
+  size: 5, 5
+  orig: 5, 5
+  offset: 0, 0
+  index: -1
+lizix
+  rotate: false
+  xy: 674, 136
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+lv_guang
+  rotate: false
+  xy: 540, 142
+  size: 133, 672
+  orig: 143, 684
+  offset: 5, 6
+  index: -1
+qing_guang
+  rotate: true
+  xy: 0, 7
+  size: 133, 672
+  orig: 143, 684
+  offset: 5, 6
+  index: -1
+zi_guang
+  rotate: false
+  xy: 675, 142
+  size: 133, 672
+  orig: 143, 684
+  offset: 5, 6
+  index: -1
