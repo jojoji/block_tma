@@ -37,8 +37,50 @@
 
     <link rel="stylesheet" type="text/css" href="style.css" />
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
+
+    <!-- [CUSTOM] Dynamic Telegram Platform Loader -->
+    <script>
+        (function () {
+            function loadScript(src, onload) {
+                var s = document.createElement('script');
+                s.src = src;
+                s.onload = onload;
+                document.head.appendChild(s);
+            }
+
+            var urlParams = new URLSearchParams(window.location.search);
+            // Check for Telegram environment:
+            // 1. 'tgWebAppData' present in URL queries (standard for Mini Apps)
+            // 2. 'platform=telegram' query param (manual debugging)
+            // 3. 'TelegramWebviewProxy' in window (some TG clients)
+            var isTelegram = urlParams.has('tgWebAppData') ||
+                urlParams.get('platform') === 'telegram' ||
+                typeof window.TelegramWebviewProxy !== 'undefined';
+
+            if (isTelegram) {
+                console.log('[Loader] Telegram detected. Loading SDKs...');
+
+                // 1. Load Telegram Web App JS (User requested)
+                loadScript('https://telegram.org/js/telegram-web-app.js', function () {
+                    console.log('[Loader] Telegram Web App SDK loaded.');
+
+                    // 2. Load Telegram Analytics
+                    loadScript('https://tganalytics.xyz/index.js', function () {
+                        if (window.TelegramAnalytics) {
+                            window.TelegramAnalytics.init({
+                                token: 'eyJhcHBfbmFtZSI6ImJsb2NrX2NhbnZhcyIsImFwcF91cmwiOiJodHRwczovL3QubWUvYmxvY2tjYW52YXNib3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9ibG9ja2NhbnZhcy5wYWdlcy5kZXYvIn0=!i/6mHJCX4nKfATHdd1XrbQAslMAvEXi6xg5gEqckiY8=',
+                                appName: 'block_canvas'
+                            });
+                            console.log('[Loader] Telegram Analytics initialized.');
+                        }
+                    });
+                });
+            } else {
+                console.log('[Loader] Not Telegram environment. Valid for Yandex/Other.');
+            }
+        })();
+    </script>
 </head>
 
 <body>
