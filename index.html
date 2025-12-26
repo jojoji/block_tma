@@ -50,19 +50,24 @@
             }
 
             var urlParams = new URLSearchParams(window.location.search);
+            var hashParams = new URLSearchParams(window.location.hash.slice(1)); // Handle hash-based params (Telegram Web)
+
             // Check for Telegram environment:
-            // 1. 'tgWebAppData' present in URL queries (standard for Mini Apps)
+            // 1. 'tgWebAppData' present in URL queries OR hash (standard for Mini Apps)
             // 2. 'platform=telegram' query param (manual debugging)
             // 3. 'TelegramWebviewProxy' in window (some TG clients)
             var isTelegram = urlParams.has('tgWebAppData') ||
+                hashParams.has('tgWebAppData') ||
                 urlParams.get('platform') === 'telegram' ||
+                hashParams.get('platform') === 'telegram' ||
                 typeof window.TelegramWebviewProxy !== 'undefined';
 
             if (isTelegram) {
                 console.log('[Loader] Telegram detected. Loading SDKs...');
 
                 // [MOCK] Inject Mock Data for Browser Simulation
-                if (urlParams.get('platform') === 'telegram' && typeof window.Telegram === 'undefined') {
+                var isDebugPlatform = urlParams.get('platform') === 'telegram' || hashParams.get('platform') === 'telegram';
+                if (isDebugPlatform && typeof window.Telegram === 'undefined') {
                     console.log('[Loader] Injecting Mock Telegram User Data...');
                     window.Telegram = {
                         WebApp: {
@@ -90,7 +95,7 @@
                     console.log('[Loader] Telegram Web App SDK loaded.');
 
                     // [MOCK] Re-Inject Mock Data for Browser Simulation (After SDK Load)
-                    if (urlParams.get('platform') === 'telegram') {
+                    if (isDebugPlatform) {
                         console.log('[Loader] Re-Injecting Mock Telegram User Data over SDK defaults...');
                         // Ensure initDataUnsafe exists
                         if (window.Telegram && window.Telegram.WebApp) {
