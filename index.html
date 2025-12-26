@@ -89,6 +89,24 @@
                 loadScript('https://telegram.org/js/telegram-web-app.js', function () {
                     console.log('[Loader] Telegram Web App SDK loaded.');
 
+                    // [MOCK] Re-Inject Mock Data for Browser Simulation (After SDK Load)
+                    if (urlParams.get('platform') === 'telegram') {
+                        console.log('[Loader] Re-Injecting Mock Telegram User Data over SDK defaults...');
+                        // Ensure initDataUnsafe exists
+                        if (window.Telegram && window.Telegram.WebApp) {
+                            window.Telegram.WebApp.initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
+                            window.Telegram.WebApp.initDataUnsafe.user = {
+                                id: 123456789,
+                                first_name: "Test",
+                                last_name: "User",
+                                username: "testuser",
+                                language_code: "en"
+                            };
+                            // Also mock the initData string if needed by backend validation (optional for client-only)
+                            window.Telegram.WebApp.initData = "query_id=...&user=...";
+                        }
+                    }
+
                     // 2. Load Telegram Analytics
                     loadScript('https://tganalytics.xyz/index.js', function () {
                         if (window.TelegramAnalytics) {
