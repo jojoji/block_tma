@@ -55,15 +55,20 @@ canvas {
   background-color: rgba(0, 0, 0, 0);
 }
 
-#GameDiv,
-#Cocos3dGameContainer,
-#GameCanvas {
+#GameDiv {
   width: 100%;
   height: 100%;
   position: relative;
   z-index: 1;
   background-color: transparent !important;
-  /* Ensure game content sits above the blurred background */
+}
+
+#Cocos3dGameContainer,
+#GameCanvas {
+  /* Do not force width/height 100% here. Let the engine handle aspect ratio resizing. */
+  position: relative;
+  z-index: 1;
+  background-color: transparent !important;
 }
 
 :root {
