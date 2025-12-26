@@ -15,13 +15,14 @@ System.register([], function (_export, _context) {
 
                 _proto.init = function init(engine) {
                     cc = engine;
+                    // [CUSTOM] Enable transparent canvas support IMMEDIATELY
+                    cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
+
                     cc.game.onPostBaseInitDelegate.add(this.onPostInitBase.bind(this));
                     cc.game.onPostSubsystemInitDelegate.add(this.onPostSystemInit.bind(this));
                 };
 
                 _proto.onPostInitBase = function onPostInitBase() {
-                    // [CUSTOM] Enable transparent canvas support immediately after base init
-                    cc.macro.ENABLE_TRANSPARENT_CANVAS = true;
                     // cc.settings.overrideSettings('assets', 'server', '');
                 };
 
