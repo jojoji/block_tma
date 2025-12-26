@@ -62,6 +62,7 @@ canvas {
   height: 100%;
   position: relative;
   z-index: 1;
+  background-color: transparent !important;
   /* Ensure game content sits above the blurred background */
 }
 
