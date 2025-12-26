@@ -69,7 +69,15 @@ canvas {
 #Cocos3dGameContainer,
 #GameCanvas {
   /* Do not force width/height 100% here. Let the engine handle aspect ratio resizing. */
-  position: relative;
+  position: relative !important;
+  /* Force relative so flex centering works */
+  left: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  right: auto !important;
+  margin: 0 auto;
+  /* Horizontal centering fallback */
+
   z-index: 1;
   background-color: transparent !important;
 }
