@@ -61,6 +61,9 @@ canvas {
   position: relative;
   z-index: 1;
   background-color: transparent !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #Cocos3dGameContainer,
