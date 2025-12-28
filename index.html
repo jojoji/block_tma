@@ -4,7 +4,25 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Cocos Creator | block_2025</title>
+    <title>Block Canvas: Pixel Art Puzzle</title>
+
+    <!-- Dynamic Title for i18n (Yandex uses Russian title) -->
+    <script>
+        (function () {
+            var titles = {
+                'ru': 'Block Canvas: Пиксель Пазл',
+                'default': 'Block Canvas: Pixel Art Puzzle'
+            };
+
+            // Detect language from URL params or browser
+            var urlParams = new URLSearchParams(window.location.search);
+            var lang = urlParams.get('lang') || navigator.language || 'en';
+            lang = lang.toLowerCase().split('-')[0]; // Get base language code
+
+            // Set title based on language
+            document.title = titles[lang] || titles['default'];
+        })();
+    </script>
 
     <!--http://www.html5rocks.com/en/mobile/mobifying/-->
     <meta name="viewport"
@@ -124,7 +142,34 @@
                     });
                 });
             } else {
-                console.log('[Loader] Not Telegram environment. Valid for Yandex/Other.');
+                // Check for Yandex Environment
+                var hostname = window.location.hostname;
+                var isYandex = hostname.includes('yandex.net') || hostname.includes('yandex.com') || hostname.includes('yandex.ru') || urlParams.get('platform') === 'yandex';
+
+                if (isYandex) {
+                    console.log('[Loader] Yandex environment detected. Loading SDK...');
+                    loadScript('https://yandex.ru/games/sdk/v2', function () {
+                        console.log('[Loader] Yandex SDK script loaded. Initializing YaGames...');
+                        if (window.YaGames) {
+                            window.YaGames.init().then(function (ysdk) {
+                                console.log('[Loader] Yandex SDK initialized early (success).');
+                                window.ysdk = ysdk; // Store globally for PlatformManager using
+                            }).catch(function (err) {
+                                console.error('[Loader] Yandex SDK init failed:', err);
+                            });
+                        }
+                    });
+                } else {
+                    // Check for Facebook Instant Games environment
+                    // Note: Facebook SDK should be loaded via <script> tag in head, not dynamically
+                    // If FBInstant exists, the game is running in Facebook environment
+                    if (typeof window.FBInstant !== 'undefined') {
+                        console.log('[Loader] Facebook Instant Games environment detected.');
+                        // SDK is already loaded, no action needed
+                    } else {
+                        console.log('[Loader] Not Telegram, Yandex, or Facebook. Native/CrazyGames fallback.');
+                    }
+                }
             }
         })();
     </script>
@@ -151,6 +196,33 @@
 
     <script>
         System.import('./index.js').catch(function (err) { console.error(err); })
+    </script>
+
+    <!-- Service Worker Registration for Telegram (Caching) -->
+    <script>
+            (function () {
+                // Only register SW for Telegram Mini App
+                var isTelegram = window.Telegram && window.Telegram.WebApp;
+
+                if (isTelegram && 'serviceWorker' in navigator) {
+                    // Wait for page load to not block rendering
+                    window.addEventListener('load', function () {
+                        navigator.serviceWorker.register('/service-worker.js')
+                            .then(function (reg) {
+                                console.log('[Telegram] Service Worker registered for caching');
+                                console.log('[Telegram] Scope:', reg.scope);
+
+                                // Check for updates
+                                reg.addEventListener('updatefound', function () {
+                                    console.log('[Telegram] New SW version found, updating...');
+                                });
+                            })
+                            .catch(function (err) {
+                                console.log('[Telegram] SW registration failed:', err.message);
+                            });
+                    });
+                }
+            })();
     </script>
 
 </body>
