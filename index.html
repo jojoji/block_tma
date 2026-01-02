@@ -55,6 +55,33 @@
 
     <link rel="stylesheet" type="text/css" href="style.css" />
 
+    <!-- [Yandex Fix] Prevent ALL scrolling events (Policy 1.10.2) -->
+    <script>
+        (function () {
+            // Prevent touchmove scrolling
+            document.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+            }, { passive: false });
+
+            // Prevent wheel scrolling
+            document.addEventListener('wheel', function (e) {
+                e.preventDefault();
+            }, { passive: false });
+
+            // Prevent scroll event
+            document.addEventListener('scroll', function (e) {
+                e.preventDefault();
+                window.scrollTo(0, 0);
+            }, { passive: false });
+
+            // Reset scroll position on any scroll attempt
+            window.addEventListener('scroll', function () {
+                window.scrollTo(0, 0);
+            });
+
+            console.log('[Yandex] Scroll prevention enabled');
+        })();
+    </script>
 
 
     <!-- [CUSTOM] Dynamic Telegram Platform Loader -->
@@ -154,6 +181,19 @@
                             window.YaGames.init().then(function (ysdk) {
                                 console.log('[Loader] Yandex SDK initialized early (success).');
                                 window.ysdk = ysdk; // Store globally for PlatformManager using
+
+                                // [Yandex Policy 2.14] Extract language IMMEDIATELY from SDK
+                                // This must happen before game loads to avoid "language loads with delay"
+                                try {
+                                    var yandexLang = ysdk.environment.i18n.lang;
+                                    window.yandexLang = yandexLang;
+                                    console.log('[Loader] Yandex language detected via SDK:', yandexLang);
+
+                                    // Also set document lang attribute for CSS :lang() selectors
+                                    document.documentElement.setAttribute('lang', yandexLang);
+                                } catch (e) {
+                                    console.warn('[Loader] Failed to get Yandex language:', e);
+                                }
                             }).catch(function (err) {
                                 console.error('[Loader] Yandex SDK init failed:', err);
                             });
@@ -167,7 +207,41 @@
                         console.log('[Loader] Facebook Instant Games environment detected.');
                         // SDK is already loaded, no action needed
                     } else {
-                        console.log('[Loader] Not Telegram, Yandex, or Facebook. Native/CrazyGames fallback.');
+                        // Check for GameDistribution environment
+                        var isGameDistribution = hostname.includes('gamedistribution') ||
+                            urlParams.get('platform') === 'gd' ||
+                            urlParams.get('platform') === 'gamedistribution';
+
+                        if (isGameDistribution) {
+                            console.log('[Loader] GameDistribution environment detected. Loading SDK...');
+
+                            // Set GD_OPTIONS before loading SDK
+                            window.GD_OPTIONS = {
+                                gameId: 'd1cc6875ea80482d84af71bba2057158',
+                                advertisementSettings: {
+                                    autoplay: false
+                                },
+                                onEvent: function (event) {
+                                    console.log('[GD Early] SDK Event:', event.name, event.message || '');
+
+                                    // 设置奖励标记，供 showRewardVideo 检查
+                                    if (event.name === 'SDK_REWARDED_WATCH_COMPLETE') {
+                                        window.__gdRewardWatched = true;
+                                        console.log('[GD Early] Reward flag set to true');
+                                    }
+                                }
+                            };
+
+                            // Load GameDistribution SDK
+                            loadScript('https://html5.api.gamedistribution.com/main.min.js', function () {
+                                console.log('[Loader] GameDistribution SDK loaded successfully.');
+                                if (window.gdsdk) {
+                                    console.log('[Loader] gdsdk available:', Object.keys(window.gdsdk));
+                                }
+                            });
+                        } else {
+                            console.log('[Loader] Not Telegram, Yandex, Facebook, or GameDistribution. Native/CrazyGames fallback.');
+                        }
                     }
                 }
             }
