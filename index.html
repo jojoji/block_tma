@@ -84,7 +84,10 @@
     </script>
 
 
-    <!-- [CUSTOM] Dynamic Telegram Platform Loader -->
+    <!-- [VK] VK Bridge SDK -->
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+
+    <!-- [CUSTOM] Dynamic Telegram/VK/Yandex Platform Loader -->
     <script>
         (function () {
             function loadScript(src, onload) {
@@ -95,165 +98,184 @@
             }
 
             var urlParams = new URLSearchParams(window.location.search);
-            var hashParams = new URLSearchParams(window.location.hash.slice(1)); // Handle hash-based params (Telegram Web)
+            var hashParams = new URLSearchParams(window.location.hash.slice(1));
 
-            // Check for Telegram environment:
-            // 1. 'tgWebAppData' present in URL queries OR hash (standard for Mini Apps)
-            // 2. 'platform=telegram' query param (manual debugging)
-            // 3. 'TelegramWebviewProxy' in window (some TG clients)
-            var isTelegram = urlParams.has('tgWebAppData') ||
-                hashParams.has('tgWebAppData') ||
-                urlParams.get('platform') === 'telegram' ||
-                hashParams.get('platform') === 'telegram' ||
-                typeof window.TelegramWebviewProxy !== 'undefined';
+            // Check for VK Environment
+            // VK Mini Apps usually pass 'vk_...' parameters in the URL
+            var isVK = urlParams.has('vk_app_id') || urlParams.has('vk_platform') || urlParams.get('platform') === 'vk';
 
-            if (isTelegram) {
-                console.log('[Loader] Telegram detected. Loading SDKs...');
+            if (isVK) {
+                console.log('[Loader] VK environment detected.');
+                // VK Bridge is already loaded via script tag above
+                if (window.vkBridge) {
+                    window.vkBridge.send('VKWebAppInit')
+                        .then((data) => {
+                            console.log('[Loader] VK Bridge initialized:', data);
+                            window.isVKInitialized = true;
+                        })
+                        .catch((error) => {
+                            console.error('[Loader] VK Bridge init failed:', error);
+                        });
+                }
+                // VK doesn't need to load other SDKs, so we stop here
+            } else {
+                // Check for Telegram environment:
+                // 1. 'tgWebAppData' present in URL queries OR hash (standard for Mini Apps)
+                // 2. 'platform=telegram' query param (manual debugging)
+                // 3. 'TelegramWebviewProxy' in window (some TG clients)
+                var isTelegram = urlParams.has('tgWebAppData') ||
+                    hashParams.has('tgWebAppData') ||
+                    urlParams.get('platform') === 'telegram' ||
+                    hashParams.get('platform') === 'telegram' ||
+                    typeof window.TelegramWebviewProxy !== 'undefined';
 
-                // [MOCK] Inject Mock Data for Browser Simulation
-                var isDebugPlatform = urlParams.get('platform') === 'telegram' || hashParams.get('platform') === 'telegram';
-                if (isDebugPlatform && typeof window.Telegram === 'undefined') {
-                    console.log('[Loader] Injecting Mock Telegram User Data...');
-                    window.Telegram = {
-                        WebApp: {
-                            initDataUnsafe: {
-                                user: {
+                if (isTelegram) {
+                    console.log('[Loader] Telegram detected. Loading SDKs...');
+
+                    // [MOCK] Inject Mock Data for Browser Simulation
+                    var isDebugPlatform = urlParams.get('platform') === 'telegram' || hashParams.get('platform') === 'telegram';
+                    if (isDebugPlatform && typeof window.Telegram === 'undefined') {
+                        console.log('[Loader] Injecting Mock Telegram User Data...');
+                        window.Telegram = {
+                            WebApp: {
+                                initDataUnsafe: {
+                                    user: {
+                                        id: 123456789,
+                                        first_name: "Test",
+                                        last_name: "User",
+                                        username: "testuser",
+                                        language_code: "en" // Change to 'zh' to test Chinese
+                                    }
+                                },
+                                ready: function () { },
+                                expand: function () { },
+                                setHeaderColor: function () { },
+                                HapticFeedback: { impactOccurred: function () { }, notificationOccurred: function () { } },
+                                version: "6.0",
+                                platform: "weba"
+                            }
+                        };
+                    }
+
+                    // 1. Load Telegram Web App JS (User requested)
+                    loadScript('https://telegram.org/js/telegram-web-app.js', function () {
+                        console.log('[Loader] Telegram Web App SDK loaded.');
+
+                        // [MOCK] Re-Inject Mock Data for Browser Simulation (After SDK Load)
+                        if (isDebugPlatform) {
+                            console.log('[Loader] Re-Injecting Mock Telegram User Data over SDK defaults...');
+                            // Ensure initDataUnsafe exists
+                            if (window.Telegram && window.Telegram.WebApp) {
+                                window.Telegram.WebApp.initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
+                                window.Telegram.WebApp.initDataUnsafe.user = {
                                     id: 123456789,
                                     first_name: "Test",
                                     last_name: "User",
                                     username: "testuser",
-                                    language_code: "en" // Change to 'zh' to test Chinese
-                                }
-                            },
-                            ready: function () { },
-                            expand: function () { },
-                            setHeaderColor: function () { },
-                            HapticFeedback: { impactOccurred: function () { }, notificationOccurred: function () { } },
-                            version: "6.0",
-                            platform: "weba"
+                                    language_code: "en"
+                                };
+                                // Also mock the initData string if needed by backend validation (optional for client-only)
+                                window.Telegram.WebApp.initData = "query_id=...&user=...";
+                            }
                         }
-                    };
-                }
 
-                // 1. Load Telegram Web App JS (User requested)
-                loadScript('https://telegram.org/js/telegram-web-app.js', function () {
-                    console.log('[Loader] Telegram Web App SDK loaded.');
-
-                    // [MOCK] Re-Inject Mock Data for Browser Simulation (After SDK Load)
-                    if (isDebugPlatform) {
-                        console.log('[Loader] Re-Injecting Mock Telegram User Data over SDK defaults...');
-                        // Ensure initDataUnsafe exists
-                        if (window.Telegram && window.Telegram.WebApp) {
-                            window.Telegram.WebApp.initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
-                            window.Telegram.WebApp.initDataUnsafe.user = {
-                                id: 123456789,
-                                first_name: "Test",
-                                last_name: "User",
-                                username: "testuser",
-                                language_code: "en"
-                            };
-                            // Also mock the initData string if needed by backend validation (optional for client-only)
-                            window.Telegram.WebApp.initData = "query_id=...&user=...";
-                        }
-                    }
-
-                    // 2. Load Telegram Analytics
-                    loadScript('https://tganalytics.xyz/index.js', function () {
-                        if (window.TelegramAnalytics) {
-                            window.TelegramAnalytics.init({
-                                token: 'eyJhcHBfbmFtZSI6ImJsb2NrX2NhbnZhcyIsImFwcF91cmwiOiJodHRwczovL3QubWUvYmxvY2tjYW52YXNib3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9ibG9ja2NhbnZhcy5wYWdlcy5kZXYvIn0=!i/6mHJCX4nKfATHdd1XrbQAslMAvEXi6xg5gEqckiY8=',
-                                appName: 'block_canvas'
-                            });
-                            console.log('[Loader] Telegram Analytics initialized.');
-                        }
-                    });
-                });
-            } else {
-                // Check for Yandex Environment
-                var hostname = window.location.hostname;
-                var isYandex = hostname.includes('yandex.net') || hostname.includes('yandex.com') || hostname.includes('yandex.ru') || urlParams.get('platform') === 'yandex';
-
-                if (isYandex) {
-                    console.log('[Loader] Yandex environment detected. Loading SDK...');
-                    loadScript('https://yandex.ru/games/sdk/v2', function () {
-                        console.log('[Loader] Yandex SDK script loaded. Initializing YaGames...');
-                        if (window.YaGames) {
-                            window.YaGames.init().then(function (ysdk) {
-                                console.log('[Loader] Yandex SDK initialized early (success).');
-                                window.ysdk = ysdk; // Store globally for PlatformManager using
-
-                                // [Yandex Policy 2.14] Extract language IMMEDIATELY from SDK
-                                // This must happen before game loads to avoid "language loads with delay"
-                                try {
-                                    var yandexLang = ysdk.environment.i18n.lang;
-                                    window.yandexLang = yandexLang;
-                                    console.log('[Loader] Yandex language detected via SDK:', yandexLang);
-
-                                    // Also set document lang attribute for CSS :lang() selectors
-                                    document.documentElement.setAttribute('lang', yandexLang);
-                                } catch (e) {
-                                    console.warn('[Loader] Failed to get Yandex language:', e);
-                                }
-                            }).catch(function (err) {
-                                console.error('[Loader] Yandex SDK init failed:', err);
-                            });
-                        }
+                        // 2. Load Telegram Analytics
+                        loadScript('https://tganalytics.xyz/index.js', function () {
+                            if (window.TelegramAnalytics) {
+                                window.TelegramAnalytics.init({
+                                    token: 'eyJhcHBfbmFtZSI6ImJsb2NrX2NhbnZhcyIsImFwcF91cmwiOiJodHRwczovL3QubWUvYmxvY2tjYW52YXNib3QiLCJhcHBfZG9tYWluIjoiaHR0cHM6Ly9ibG9ja2NhbnZhcy5wYWdlcy5kZXYvIn0=!i/6mHJCX4nKfATHdd1XrbQAslMAvEXi6xg5gEqckiY8=',
+                                    appName: 'block_canvas'
+                                });
+                                console.log('[Loader] Telegram Analytics initialized.');
+                            }
+                        });
                     });
                 } else {
-                    // Check for Facebook Instant Games environment
-                    // Note: Facebook SDK should be loaded via <script> tag in head, not dynamically
-                    // If FBInstant exists, the game is running in Facebook environment
-                    if (typeof window.FBInstant !== 'undefined') {
-                        console.log('[Loader] Facebook Instant Games environment detected.');
-                        // SDK is already loaded, no action needed
-                    } else {
-                        // Check for GameDistribution environment
-                        var isGameDistribution = hostname.includes('gamedistribution') ||
-                            urlParams.get('platform') === 'gd' ||
-                            urlParams.get('platform') === 'gamedistribution';
+                    // Check for Yandex Environment
+                    var hostname = window.location.hostname;
+                    var isYandex = hostname.includes('yandex.net') || hostname.includes('yandex.com') || hostname.includes('yandex.ru') || urlParams.get('platform') === 'yandex';
 
-                        if (isGameDistribution) {
-                            console.log('[Loader] GameDistribution environment detected. Loading SDK...');
+                    if (isYandex) {
+                        console.log('[Loader] Yandex environment detected. Loading SDK...');
+                        loadScript('https://yandex.ru/games/sdk/v2', function () {
+                            console.log('[Loader] Yandex SDK script loaded. Initializing YaGames...');
+                            if (window.YaGames) {
+                                window.YaGames.init().then(function (ysdk) {
+                                    console.log('[Loader] Yandex SDK initialized early (success).');
+                                    window.ysdk = ysdk; // Store globally for PlatformManager using
 
-                            // Set GD_OPTIONS before loading SDK
-                            window.GD_OPTIONS = {
-                                gameId: 'd1cc6875ea80482d84af71bba2057158',
-                                advertisementSettings: {
-                                    autoplay: false
-                                },
-                                onEvent: function (event) {
-                                    console.log('[GD Early] SDK Event:', event.name, event.message || '');
+                                    // [Yandex Policy 2.14] Extract language IMMEDIATELY from SDK
+                                    // This must happen before game loads to avoid "language loads with delay"
+                                    try {
+                                        var yandexLang = ysdk.environment.i18n.lang;
+                                        window.yandexLang = yandexLang;
+                                        console.log('[Loader] Yandex language detected via SDK:', yandexLang);
 
-                                    // 设置奖励标记，供 showRewardVideo 检查
-                                    if (event.name === 'SDK_REWARDED_WATCH_COMPLETE') {
-                                        window.__gdRewardWatched = true;
-                                        console.log('[GD Early] Reward flag set to true');
+                                        // Also set document lang attribute for CSS :lang() selectors
+                                        document.documentElement.setAttribute('lang', yandexLang);
+                                    } catch (e) {
+                                        console.warn('[Loader] Failed to get Yandex language:', e);
                                     }
-                                }
-                            };
-
-                            // Load GameDistribution SDK
-                            loadScript('https://html5.api.gamedistribution.com/main.min.js', function () {
-                                console.log('[Loader] GameDistribution SDK loaded successfully.');
-                                if (window.gdsdk) {
-                                    console.log('[Loader] gdsdk available:', Object.keys(window.gdsdk));
-                                }
-                            });
+                                }).catch(function (err) {
+                                    console.error('[Loader] Yandex SDK init failed:', err);
+                                });
+                            }
+                        });
+                    } else {
+                        // Check for Facebook Instant Games environment
+                        // Note: Facebook SDK should be loaded via <script> tag in head, not dynamically
+                        // If FBInstant exists, the game is running in Facebook environment
+                        if (typeof window.FBInstant !== 'undefined') {
+                            console.log('[Loader] Facebook Instant Games environment detected.');
+                            // SDK is already loaded, no action needed
                         } else {
-                            console.log('[Loader] Not Telegram, Yandex, Facebook, or GameDistribution. Native/CrazyGames fallback.');
+                            // Check for GameDistribution environment
+                            var isGameDistribution = hostname.includes('gamedistribution') ||
+                                urlParams.get('platform') === 'gd' ||
+                                urlParams.get('platform') === 'gamedistribution';
+
+                            if (isGameDistribution) {
+                                console.log('[Loader] GameDistribution environment detected. Loading SDK...');
+
+                                // Set GD_OPTIONS before loading SDK
+                                window.GD_OPTIONS = {
+                                    gameId: 'd1cc6875ea80482d84af71bba2057158',
+                                    advertisementSettings: {
+                                        autoplay: false
+                                    },
+                                    onEvent: function (event) {
+                                        console.log('[GD Early] SDK Event:', event.name, event.message || '');
+
+                                        // 设置奖励标记，供 showRewardVideo 检查
+                                        if (event.name === 'SDK_REWARDED_WATCH_COMPLETE') {
+                                            window.__gdRewardWatched = true;
+                                            console.log('[GD Early] Reward flag set to true');
+                                        }
+                                    }
+                                };
+
+                                // Load GameDistribution SDK
+                                loadScript('https://html5.api.gamedistribution.com/main.min.js', function () {
+                                    console.log('[Loader] GameDistribution SDK loaded successfully.');
+                                    if (window.gdsdk) {
+                                        console.log('[Loader] gdsdk available:', Object.keys(window.gdsdk));
+                                    }
+                                });
+                            } else {
+                                console.log('[Loader] Not Telegram, Yandex, Facebook, or GameDistribution. Native/CrazyGames fallback.');
+                            }
                         }
                     }
                 }
-            }
-        })();
+            }) ();
     </script>
 
     <!-- [Firebase] Web Analytics SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
     <script>
-        // Firebase will be initialized by FirebaseWebManager.ts in the game code
-        console.log('[Firebase] SDK scripts loaded');
+            // Firebase will be initialized by FirebaseWebManager.ts in the game code
+            console.log('[Firebase] SDK scripts loaded');
     </script>
 </head>
 
@@ -277,34 +299,34 @@
     <script src="src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
 
     <script>
-        System.import('./index.js').catch(function (err) { console.error(err); })
+            System.import('./index.js').catch(function (err) { console.error(err); })
     </script>
 
     <!-- Service Worker Registration for Telegram (Caching) -->
     <script>
-            (function () {
-                // Only register SW for Telegram Mini App
-                var isTelegram = window.Telegram && window.Telegram.WebApp;
+                (function () {
+                    // Only register SW for Telegram Mini App
+                    var isTelegram = window.Telegram && window.Telegram.WebApp;
 
-                if (isTelegram && 'serviceWorker' in navigator) {
-                    // Wait for page load to not block rendering
-                    window.addEventListener('load', function () {
-                        navigator.serviceWorker.register('/service-worker.js')
-                            .then(function (reg) {
-                                console.log('[Telegram] Service Worker registered for caching');
-                                console.log('[Telegram] Scope:', reg.scope);
+                    if (isTelegram && 'serviceWorker' in navigator) {
+                        // Wait for page load to not block rendering
+                        window.addEventListener('load', function () {
+                            navigator.serviceWorker.register('/service-worker.js')
+                                .then(function (reg) {
+                                    console.log('[Telegram] Service Worker registered for caching');
+                                    console.log('[Telegram] Scope:', reg.scope);
 
-                                // Check for updates
-                                reg.addEventListener('updatefound', function () {
-                                    console.log('[Telegram] New SW version found, updating...');
+                                    // Check for updates
+                                    reg.addEventListener('updatefound', function () {
+                                        console.log('[Telegram] New SW version found, updating...');
+                                    });
+                                })
+                                .catch(function (err) {
+                                    console.log('[Telegram] SW registration failed:', err.message);
                                 });
-                            })
-                            .catch(function (err) {
-                                console.log('[Telegram] SW registration failed:', err.message);
-                            });
-                    });
-                }
-            })();
+                        });
+                    }
+                })();
     </script>
 
 </body>
