@@ -274,15 +274,16 @@
                         }
                     }
                 }
-            }) ();
+            }
+        })();
     </script>
 
     <!-- [Firebase] Web Analytics SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
     <script>
-            // Firebase will be initialized by FirebaseWebManager.ts in the game code
-            console.log('[Firebase] SDK scripts loaded');
+        // Firebase will be initialized by FirebaseWebManager.ts in the game code
+        console.log('[Firebase] SDK scripts loaded');
     </script>
 </head>
 
@@ -306,52 +307,52 @@
     <script src="src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
 
     <script>
-            function startGame() {
-                System.import('./index.js').catch(function (err) { console.error(err); });
-            }
-            if (window.waitForSDK) {
-                console.log('[Bootstrap] Waiting for SDKs to load...');
-                window.onSDKReady = startGame;
-                // Fallback safety timeout (5 seconds)
-                setTimeout(function () {
-                    if (window.waitForSDK && !window.hasStarted) {
-                        console.warn('[Bootstrap] SDK Load Timeout. Force starting...');
-                        window.hasStarted = true;
-                        startGame();
-                    }
-                }, 5000);
-            } else {
-                console.log('[Bootstrap] No async SDKs pending. Starting immediately.');
-                window.hasStarted = true;
-                startGame();
-            }
+        function startGame() {
+            System.import('./index.js').catch(function (err) { console.error(err); });
+        }
+        if (window.waitForSDK) {
+            console.log('[Bootstrap] Waiting for SDKs to load...');
+            window.onSDKReady = startGame;
+            // Fallback safety timeout (5 seconds)
+            setTimeout(function () {
+                if (window.waitForSDK && !window.hasStarted) {
+                    console.warn('[Bootstrap] SDK Load Timeout. Force starting...');
+                    window.hasStarted = true;
+                    startGame();
+                }
+            }, 5000);
+        } else {
+            console.log('[Bootstrap] No async SDKs pending. Starting immediately.');
+            window.hasStarted = true;
+            startGame();
+        }
     </script>
 
     <!-- Service Worker Registration for Telegram (Caching) -->
     <script>
-            (function () {
-                // Only register SW for Telegram Mini App
-                var isTelegram = window.Telegram && window.Telegram.WebApp;
+        (function () {
+            // Only register SW for Telegram Mini App
+            var isTelegram = window.Telegram && window.Telegram.WebApp;
 
-                if (isTelegram && 'serviceWorker' in navigator) {
-                    // Wait for page load to not block rendering
-                    window.addEventListener('load', function () {
-                        navigator.serviceWorker.register('/service-worker.js')
-                            .then(function (reg) {
-                                console.log('[Telegram] Service Worker registered for caching');
-                                console.log('[Telegram] Scope:', reg.scope);
+            if (isTelegram && 'serviceWorker' in navigator) {
+                // Wait for page load to not block rendering
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('/service-worker.js')
+                        .then(function (reg) {
+                            console.log('[Telegram] Service Worker registered for caching');
+                            console.log('[Telegram] Scope:', reg.scope);
 
-                                // Check for updates
-                                reg.addEventListener('updatefound', function () {
-                                    console.log('[Telegram] New SW version found, updating...');
-                                });
-                            })
-                            .catch(function (err) {
-                                console.log('[Telegram] SW registration failed:', err.message);
+                            // Check for updates
+                            reg.addEventListener('updatefound', function () {
+                                console.log('[Telegram] New SW version found, updating...');
                             });
-                    });
-                }
-            })();
+                        })
+                        .catch(function (err) {
+                            console.log('[Telegram] SW registration failed:', err.message);
+                        });
+                });
+            }
+        })();
     </script>
 
 </body>
