@@ -126,8 +126,12 @@
                 var isTelegram = urlParams.has('tgWebAppData') ||
                     hashParams.has('tgWebAppData') ||
                     urlParams.get('platform') === 'telegram' ||
+                    urlParams.get('platform') === 'tg' ||
                     hashParams.get('platform') === 'telegram' ||
-                    typeof window.TelegramWebviewProxy !== 'undefined';
+                    hashParams.get('platform') === 'tg' ||
+                    typeof window.TelegramWebviewProxy !== 'undefined' ||
+                    typeof window.Telegram !== 'undefined' ||
+                    navigator.userAgent.indexOf('Telegram') > -1;
 
                 if (isTelegram) {
                     console.log('[Loader] Telegram detected. Loading SDKs...');
