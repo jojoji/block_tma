@@ -269,7 +269,22 @@
                                     }
                                 });
                             } else {
-                                console.log('[Loader] Not Telegram, Yandex, Facebook, or GameDistribution. Native/CrazyGames fallback.');
+                                // Check for GamePix environment
+                                var isGamePix = urlParams.get('platform') === 'gamepix' ||
+                                    urlParams.get('platform') === 'gp' ||
+                                    hostname.includes('gamepix.com');
+
+                                if (isGamePix) {
+                                    console.log('[Loader] GamePix detected. Loading SDK...');
+                                    window.waitForSDK = true; // Signal game to wait
+
+                                    loadScript('https://integration.gamepix.com/sdk/v3/gamepix.sdk.js', function () {
+                                        console.log('[Loader] GamePix SDK loaded.');
+                                        if (window.onSDKReady) window.onSDKReady();
+                                    });
+                                } else {
+                                    console.log('[Loader] Not Telegram, Yandex, Facebook, GameDistribution, or GamePix. Native/CrazyGames fallback.');
+                                }
                             }
                         }
                     }
