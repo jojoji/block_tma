@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- [YouTube] Playables SDK (Dedicated) - MUST BE FIRST -->
+    <script src="https://www.youtube.com/game_api/v1"></script>
+    <script>
+        // Force YouTube Environment Signal
+        window.waitForSDK = true;
+        window.addEventListener('load', function () {
+            console.log('[Bootstrap-YouTube] Page loaded, SDK script present.');
+            if (window.onSDKReady) window.onSDKReady();
+        });
+    </script>
+    <!-- [Firebase] Web Analytics SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+
+    <meta charset="utf-8">
+
+    <title>Block Canvas: Pixel Art Puzzle</title>
+
+    <!-- Dynamic Title for i18n -->
+    <script>
+        (function () {
+            var titles = {
+                'ru': 'Block Canvas: Пиксель Пазл',
+                'default': 'Block Canvas: Pixel Art Puzzle'
+            };
+            var urlParams = new URLSearchParams(window.location.search);
+            var lang = urlParams.get('lang') || navigator.language || 'en';
+            lang = lang.toLowerCase().split('-')[0];
+            document.title = titles[lang] || titles['default'];
+        })();
+    </script>
+
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <meta name="x5-page-mode" content="app">
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+    <div id="GameDiv" cc_exact_fit_screen="false">
+        <div id="Cocos3dGameContainer">
+            <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
+        </div>
+    </div>
+
+    <script src="src/polyfills.bundle.js" charset="utf-8"> </script>
+    <script src="src/system.bundle.js" charset="utf-8"> </script>
+    <script src="src/import-map.json" type="systemjs-importmap" charset="utf-8"> </script>
+
+    <script>
+        function startGame() {
+            System.import('./index.js').catch(function (err) { console.error(err); });
+        }
+        if (window.waitForSDK) {
+            console.log('[Bootstrap] Waiting for YouTube SDK init...');
+            window.onSDKReady = function () {
+                console.log('[Bootstrap] SDK Ready, starting game.');
+                window.hasStarted = true;
+                startGame();
+            };
+            // Safety timeout
+            setTimeout(function () {
+                if (!window.hasStarted) {
+                    console.warn('[Bootstrap] Timeout, forcing start.');
+                    window.hasStarted = true;
+                    startGame();
+                }
+            }, 3000);
+        } else {
+            startGame();
+        }
+    </script>
+</body>
+
+</html>
