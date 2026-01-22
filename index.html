@@ -21,6 +21,19 @@
 
             // Set title based on language
             document.title = titles[lang] || titles['default'];
+
+            // [Optimization] Global Console Log Suppression for Production
+            // Only enable logs if 'debug=true' is in URL or running on localhost
+            var isDebug = urlParams.get('debug') === 'true' ||
+                window.location.hostname === 'localhost' ||
+                window.location.hostname.startsWith('192.168');
+
+            if (!isDebug) {
+                console.log = function () { };
+                console.warn = function () { };
+                console.info = function () { };
+                // We keep console.error for critical debug
+            }
         })();
     </script>
 
